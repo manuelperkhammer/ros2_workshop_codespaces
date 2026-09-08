@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>turtle_goal</name>
+  <version>1.0.0</version>
+  <description>
+    ROS 2 intro workshop: steer a goal position with the arrow keys and let a
+    P-controller drive the turtlesim turtle towards it.
+  </description>
+  <maintainer email="manuel.perkhammer@tum.de">Manuel Perkhammer</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- Runtime dependencies. `rosdep install` reads these to work out what to
+       apt-install on a fresh machine. -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>turtlesim</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

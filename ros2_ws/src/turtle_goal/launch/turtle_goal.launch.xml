@@ -1,0 +1,29 @@
+<!--
+  Start everything except the keyboard node.
+
+    ros2 launch turtle_goal turtle_goal.launch.xml
+
+  goal_publisher is deliberately not launched here: it reads the keyboard, so
+  it needs a terminal of its own. Start it by hand in a second terminal:
+
+    ros2 run turtle_goal goal_publisher
+-->
+<launch>
+  <!-- Launch arguments become command-line options:
+         ros2 launch turtle_goal turtle_goal.launch.xml linear_gain:=3.0 -->
+  <arg name="linear_gain" default="1.5"/>
+  <arg name="angular_gain" default="6.0"/>
+  <arg name="show_marker" default="true"
+       description="Spawn a second turtle that marks the goal"/>
+
+  <node pkg="turtlesim" exec="turtlesim_node" name="turtlesim"/>
+
+  <node pkg="turtle_goal" exec="turtle_controller" name="turtle_controller"
+        output="screen">
+    <param name="linear_gain" value="$(var linear_gain)"/>
+    <param name="angular_gain" value="$(var angular_gain)"/>
+  </node>
+
+  <node pkg="turtle_goal" exec="goal_marker" name="goal_marker"
+        output="screen" if="$(var show_marker)"/>
+</launch>
